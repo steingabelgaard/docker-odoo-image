@@ -16,7 +16,6 @@ script:
   - docker run -it --rm --name fix-vim-snippet -v ${TRAVIS_BUILD_DIR}/odoo-shippable/scripts/fix-vim-snippet.py:/root/fix-vim-snippet.py vauxoo/odoo-80-image-shippable-auto python /root/fix-vim-snippet.py --extensions sh,sql,python
 
 after_success:
-  - if [[ "$TRAVIS_BRANCH" == "master" ]]; then
-      docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD ;
-      docker push steingabelgaard/odoo-80-image-shippable-auto ;
-    fi
+  - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+  - docker push steingabelgaard/odoo-80-image-shippable-auto
+  
